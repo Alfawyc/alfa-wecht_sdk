@@ -6,7 +6,7 @@
 
 - install
 ```bash
-composer require alfa/wechat-sdk
+composer require alfa_wechat/wechat_sdk
 ```
 
 - Add the following class to the `providers` array in `config/app.php`:

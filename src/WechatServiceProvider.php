@@ -18,7 +18,7 @@ class WechatServiceProvider extends ServiceProvider
     public function boot() :void{
         $this->publishes([
             __DIR__ . '/../config/wechat.php' => config_path("wechat.php")
-        ]);
+        ], 'alfa-wechat-config');
     }
 
     /**
