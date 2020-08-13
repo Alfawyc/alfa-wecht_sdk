@@ -1,0 +1,20 @@
+{
+    "name": "alfa_wechat/wechat_sdk",
+    "description": "Wechat Sdk",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "alfa",
+            "email": "alfa.wang@foxmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Alfa\\Wechat\\": "src"
+        }
+    }
+}
