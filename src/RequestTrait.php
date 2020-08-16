@@ -22,19 +22,37 @@ use Psr\Http\Message\ResponseInterface;
 trait RequestTrait
 {
 
+    /**
+     * @var Client\
+     */
     protected $http;
 
+    /**
+     * @var
+     */
     protected $handlerStack;
 
     protected $grantKey = 'access_token';
 
+    /**
+     * 重试次数
+     *
+     * @var int
+     */
     protected $retryTimes = 3;
 
+    /**
+     * client 超时时间
+     *
+     * @var int
+     */
     protected $timeout = 10;
 
     protected $responseJson = true;
 
     /**
+     * 获取client
+     *
      * @return Client
      */
     public function getHttpClient(){
@@ -49,6 +67,8 @@ trait RequestTrait
     }
 
     /**
+     * 中间件
+     *
      * @return HandlerStack
      */
     public function getHttpHandlerStack(){
@@ -60,6 +80,8 @@ trait RequestTrait
     }
 
     /**
+     * 重试
+     *
      * @return \Closure
      */
     public function retryHandler(){
@@ -99,7 +121,7 @@ trait RequestTrait
         return $this->parseResult($response);
     }
 
-    /**
+    /** format response
      * @param ResponseInterface $response
      * @return mixed|string
      */
@@ -145,6 +167,20 @@ trait RequestTrait
      */
     public function postJson($url , $params){
         $args = [RequestOptions::BODY => json_encode($params , JSON_UNESCAPED_UNICODE)];
+
+        return $this->callApi('post' , $url , $params);
+    }
+
+    /**
+     * 上传文件
+     *
+     * @param $url
+     * @param $params
+     * @return mixed|string
+     * @throws \Exception
+     */
+    public function upload($url , $params){
+        $argc = [RequestOptions::MULTIPART => $params];
 
         return $this->callApi('post' , $url , $params);
     }

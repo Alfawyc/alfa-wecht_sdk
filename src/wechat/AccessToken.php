@@ -19,20 +19,44 @@ use Illuminate\Support\Facades\Cache;
 
 class AccessToken
 {
+    /**
+     * app_id
+     *
+     * @var string
+     */
     protected $appId;
 
+    /**
+     * app_secret
+     *
+     * @var string
+     */
     protected $appSecret;
 
     protected $http;
 
     protected $handlerStack;
 
+    /**
+     * 超时时间
+     *
+     * @var int
+     */
     protected $timeout = 10;
 
+    /** api baseUrl
+     * @var string
+     */
     private $apiQueryUrl = 'https://api.weixin.qq.com/';
 
+    /**
+     * accessToken 缓存名
+     */
     const WECHAT_SDK_ACCESS_TOKEN_CACHE = 'wechat_sdk_access_token_cache';
 
+    /**
+     * AccessToken constructor.
+     */
     public function __construct()
     {
         $this->appId = config("wechat.app_id");
